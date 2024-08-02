@@ -17,14 +17,22 @@ jobs:
       - name: Build Go application
         run: go build -o vilmanaka-bot
 
+      - name: Make directory
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: mkdir /root/vilmanaka-bot
+
       - name: Deploy file to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          source: "./vilmanaka-bot"
-          target: "/root"
+          source: "./vilmanaka-bot,./.env"
+          target: "/root/vilmanaka-bot"
 
       - name: Deploy file to server
         uses: appleboy/scp-action@v0.1.7
