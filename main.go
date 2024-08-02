@@ -25,7 +25,12 @@ func main() {
 }
 
 func startWhatsappBot() {
-	dbLog := waLog.Stdout("Database", "DEBUG", true)
+	logLevel := ""
+	if os.Getenv("MODE") != "PRODUCTION" {
+		logLevel = "DEBUG"
+	}
+
+	dbLog := waLog.Stdout("Database", logLevel, true)
 	// Make sure you add appropriate DB connector imports, e.g. github.com/mattn/go-sqlite3 for SQLite
 	container, err := sqlstore.New("sqlite3", "file:database?_foreign_keys=on", dbLog)
 	if err != nil {
@@ -36,7 +41,7 @@ func startWhatsappBot() {
 	if err != nil {
 		panic(err)
 	}
-	clientLog := waLog.Stdout("Client", "DEBUG", true)
+	clientLog := waLog.Stdout("Client", logLevel, true)
 	client := whatsmeow.NewClient(deviceStore, clientLog)
 
 	handl := handler.Handler{
