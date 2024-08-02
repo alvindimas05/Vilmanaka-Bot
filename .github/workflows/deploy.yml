@@ -9,39 +9,36 @@ jobs:
     runs-on: ubuntu-latest
     environment: Vilmanaka
     steps:
-      - name: "Echo in file"
-        run: echo ${{ secrets }}
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.21.1
+      - name: Build Go application
+        run: go build -o vilmanaka-bot
 
-#      - uses: actions/checkout@v4
-#      - name: Set up Go
-#        uses: actions/setup-go@v5
-#        with:
-#          go-version: 1.21.1
-#      - name: Build Go application
-#        run: go build -o vilmanaka-bot
-#
-#      - name: Deploy file to server
-#        uses: appleboy/scp-action@v0.1.7
-#        with:
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USER }}
-#          password: ${{ secrets.PASSWORD }}
-#          source: "./vilmanaka-bot"
-#          target: "/root"
-#
-#      - name: Deploy file to server
-#        uses: appleboy/scp-action@v0.1.7
-#        with:
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USER }}
-#          password: ${{ secrets.PASSWORD }}
-#          source: "./vilmanaka-bot.service"
-#          target: "/etc/systemd/system"
-#
-#      - name: Enable and restart service
-#        uses: appleboy/ssh-action@v1.0.3
-#        with:
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USER }}
-#          password: ${{ secrets.PASSWORD }}
-#          script: systemctl enable --now vilmanaka-bot
+      - name: Deploy file to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          source: "./vilmanaka-bot"
+          target: "/root"
+
+      - name: Deploy file to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          source: "./vilmanaka-bot.service"
+          target: "/etc/systemd/system"
+
+      - name: Enable and restart service
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: systemctl enable --now vilmanaka-bot
