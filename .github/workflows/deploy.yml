@@ -57,3 +57,4 @@ jobs:
           script: |
             systemctl daemon-reload
             systemctl enable --now vilmanaka-bot
+            systemctl restart vilmanaka-bot
