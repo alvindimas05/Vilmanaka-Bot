@@ -38,6 +38,8 @@ func (handler *Handler) HandleMessage(e *events.Message) {
 		return
 	}
 
+	fmt.Println("Received message : ", message)
+
 	filename := strings.Replace(strings.Split(message, " ")[0], ".", "", 1)
 	text, err := handler.GetTextMessage(filename)
 	if err != nil || filename == "help" {
@@ -62,7 +64,7 @@ func (handler *Handler) ListMessages() string {
 		panic(err)
 	}
 
-	fmt.Println("Reading path : " + path.Join(workdir, "messages"))
+	fmt.Println("Reading path : ", path.Join(workdir, "messages"))
 	files, err := os.ReadDir(path.Join(workdir, "messages"))
 	if err != nil {
 		panic(err)
@@ -72,6 +74,8 @@ func (handler *Handler) ListMessages() string {
 	for _, file := range files {
 		text += "\n" + os.Getenv("PREFIX") + file.Name()
 	}
+
+	fmt.Println("Help results : ", text)
 	return text
 }
 
