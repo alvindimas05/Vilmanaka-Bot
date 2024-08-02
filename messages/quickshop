@@ -1,0 +1,17 @@
+Quickshop
+
+Membeli
+- Klik kiri pada sign chest.
+- Masukkan jumlah item yang akan dibeli.
+
+Menambah
+- Taruh chest kosong
+- Klik kiri item yang akan dijual. Contoh Steak.
+- Ketik harga per item. Contoh 5.
+- Isi stok item ke chest.
+
+Menghapus
+- Ambil semua item di chest
+- Ketik "/quickshop remove"
+
+Guide : https://youtu.be/UMFnAzv0RiY
