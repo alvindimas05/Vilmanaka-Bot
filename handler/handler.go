@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"fmt"
 	"github.com/golang/protobuf/proto"
 	"go.mau.fi/whatsmeow"
 	"go.mau.fi/whatsmeow/proto/waE2E"
@@ -43,7 +44,7 @@ func (handler *Handler) HandleMessage(e *events.Message) {
 
 	filename := strings.Replace(strings.Split(message, " ")[0], ".", "", 1)
 	text, err := handler.GetTextMessage(filename)
-	if err != nil {
+	if err != nil || filename == "help" {
 		handler.SendMessage(e, handler.GetHelpMessage())
 		return
 	}
@@ -65,6 +66,7 @@ func (handler *Handler) ListMessages() string {
 		panic(err)
 	}
 
+	fmt.Println("Reading path : " + path.Join(workdir, "messages"))
 	files, err := os.ReadDir(path.Join(workdir, "messages"))
 	if err != nil {
 		panic(err)
