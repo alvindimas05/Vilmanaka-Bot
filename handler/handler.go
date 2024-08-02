@@ -34,7 +34,7 @@ func (handler *Handler) EventHandler(evt interface{}) {
 func (handler *Handler) HandleMessage(e *events.Message) {
 	message := e.Message.GetConversation()
 
-	if e.Info.IsFromMe || message == "" || string(message[0]) != os.Getenv("PREFIX") {
+	if e.Info.IsFromMe || len(message) == 0 || string(message[0]) != os.Getenv("PREFIX") {
 		return
 	}
 
