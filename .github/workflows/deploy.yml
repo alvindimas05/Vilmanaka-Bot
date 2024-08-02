@@ -10,7 +10,7 @@ jobs:
     environment: Vilmanaka
     steps:
       - name: "Echo in file"
-        run: echo ${{ secrets.HOST }}
+        run: echo ${{ secrets }}
 
 #      - uses: actions/checkout@v4
 #      - name: Set up Go
