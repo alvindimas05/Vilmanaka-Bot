@@ -38,7 +38,7 @@ func (handler *Handler) HandleMessage(e *events.Message) {
 
 	message := e.Message.GetConversation()
 
-	if string(message[0]) != os.Getenv("PREFIX") {
+	if message == "" || string(message[0]) != os.Getenv("PREFIX") {
 		return
 	}
 
