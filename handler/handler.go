@@ -40,9 +40,9 @@ func (handler *Handler) HandleMessage(e *events.Message) {
 
 	fmt.Println("Received message : ", message)
 
-	filename := strings.Replace(strings.Split(message, " ")[0], ".", "", 1)
+	filename := strings.Replace(strings.Split(message, " ")[0], os.Getenv("PREFIX"), "", 1)
 	text, err := handler.GetTextMessage(filename)
-	if err != nil || filename == "help" {
+	if err != nil || filename == "help" || filename == "" {
 		handler.SendMessage(e, handler.GetHelpMessage())
 		return
 	}
