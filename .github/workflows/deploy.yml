@@ -17,7 +17,7 @@ jobs:
         run: go build -o vilmanaka-bot
 
       - name: Deploy file to server
-        uses: appleboy/scp-action@v1.0.3
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
@@ -26,7 +26,7 @@ jobs:
           target: "/root"
 
       - name: Deploy file to server
-        uses: appleboy/scp-action@v1.0.3
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
