@@ -25,7 +25,7 @@ func main() {
 }
 
 func startWhatsappBot() {
-	logLevel := ""
+	logLevel := "ERROR"
 	if os.Getenv("MODE") != "PRODUCTION" {
 		logLevel = "DEBUG"
 	}
