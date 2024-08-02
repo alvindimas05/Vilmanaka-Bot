@@ -22,13 +22,15 @@ jobs:
           rm .env
           cp .env.production .env
 
-      - name: Make directory
+      - name: Deleting things
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          script: mkdir -p /root/vilmanaka-bot
+          script: |
+            rm -rf /root/vilmanaka-bot
+            mkdir -p /root/vilmanaka-bot
 
       - name: Deploy file to server
         uses: appleboy/scp-action@v0.1.7

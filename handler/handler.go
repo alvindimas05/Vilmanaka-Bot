@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"fmt"
 	"github.com/golang/protobuf/proto"
 	"go.mau.fi/whatsmeow"
 	"go.mau.fi/whatsmeow/proto/waE2E"
@@ -75,14 +76,20 @@ func (handler *Handler) ListMessages() string {
 }
 
 func (handler *Handler) SendMessage(e *events.Message, message string) {
+	fmt.Println(
+		"Sending message with reply:",
+		&waE2E.ContextInfo{
+			StanzaID:    proto.String(e.Info.ID),
+			Participant: proto.String(e.Info.Sender.ToNonAD().String()),
+		},
+	)
 	_, err := handler.Client.SendMessage(context.Background(), e.Info.Chat,
 		&waE2E.Message{
 			ExtendedTextMessage: &waE2E.ExtendedTextMessage{
 				Text: proto.String(message),
 				ContextInfo: &waE2E.ContextInfo{
-					StanzaID:      proto.String(e.Info.ID),
-					Participant:   proto.String(e.Info.Sender.ToNonAD().String()),
-					QuotedMessage: e.Message,
+					StanzaID:    proto.String(e.Info.ID),
+					Participant: proto.String(e.Info.Sender.ToNonAD().String()),
 				},
 			},
 		},

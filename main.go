@@ -25,10 +25,10 @@ func main() {
 }
 
 func startWhatsappBot() {
-	logLevel := "ERROR"
-	if os.Getenv("MODE") != "PRODUCTION" {
-		logLevel = "DEBUG"
-	}
+	logLevel := "WARN"
+	//if os.Getenv("MODE") != "PRODUCTION" {
+	//	logLevel = "DEBUG"
+	//}
 
 	dbLog := waLog.Stdout("Database", logLevel, true)
 	// Make sure you add appropriate DB connector imports, e.g. github.com/mattn/go-sqlite3 for SQLite
