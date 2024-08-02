@@ -1,0 +1,9 @@
+Jika kamu terkena error bertuliskan seperti
+
+Internal Exception: io.netty.handler.codec.DecoderException
+
+Coba jalankan lewat Minecraft Vanilla (Tanpa Optifine/Fabric) Versi Terbaru.
+Error ini kemungkinan disebabkan oleh Mod Minecraft versi lama yang tidak support dengan server.
+Contoh user menggunakan Optifine 1.20 namun Server menggunakan 1.21.
+
+Contoh solusi alternatif adalah Fabric 1.21 atau Vanilla 1.20.
