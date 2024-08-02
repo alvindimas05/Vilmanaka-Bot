@@ -17,6 +17,11 @@ jobs:
       - name: Build Go application
         run: go build -o vilmanaka-bot
 
+      - name: Set mode to production
+        run: |
+          rm .env
+          cp .env.production .env
+
       - name: Make directory
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -31,7 +36,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          source: "./vilmanaka-bot,./.env"
+          source: "./vilmanaka-bot,./.env,./messages"
           target: "/root/vilmanaka-bot"
 
       - name: Deploy file to server
@@ -49,4 +54,6 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          script: systemctl enable --now vilmanaka-bot
+          script:
+            systemctl daemon-reload
+            systemctl enable --now vilmanaka-bot
