@@ -6,9 +6,8 @@ on:
 
 jobs:
   build-and-deploy:
-    environment: Vilmanaka
     runs-on: ubuntu-latest
-    secrets: inherit
+    environment: Vilmanaka
     steps:
       - uses: actions/checkout@v4
       - name: Set up Go
