@@ -1,0 +1,9 @@
+Public Home digunakan agar member server lain bisa mengakses rumahmu.
+Bisa digunakan untuk tempat wisata atau market.
+
+Membuat Public Home
+- /sethome NamaPublicHome untuk menambahkan rumah
+- /edithome NamaPublicHome privacy public
+
+Teleport ke Public Home
+- /phome NamaPublicHome
