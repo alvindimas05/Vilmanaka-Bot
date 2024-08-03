@@ -29,7 +29,8 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            rm -rf /root/vilmanaka-bot
+            rm -rf /root/vilmanaka-bot/messages
+            rm -rf /root/vilmanaka-bot/vilmanaka-bot
             mkdir -p /root/vilmanaka-bot
 
       - name: Deploy file to server
