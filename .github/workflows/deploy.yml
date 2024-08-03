@@ -18,9 +18,7 @@ jobs:
         run: go build -o vilmanaka-bot
 
       - name: Set mode to production
-        run: |
-          rm .env
-          cp .env.production .env
+        run: cp .env.production .env
 
       - name: Deleting things
         uses: appleboy/ssh-action@v1.0.3
@@ -31,6 +29,7 @@ jobs:
           script: |
             rm -rf /root/vilmanaka-bot/messages
             rm -rf /root/vilmanaka-bot/vilmanaka-bot
+            rm -rf /root/vilmanaka-bot/.env
             mkdir -p /root/vilmanaka-bot
 
       - name: Deploy file to server
