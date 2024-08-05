@@ -1,0 +1,6 @@
+Jika kamu mengalami lag atau terkena error bertuliskan seperti
+
+Internal Exception: io.netty.handler.codec.DecoderException
+
+Kemungkinan disebabkan karena kamu menggunakan versi sebelumnya dari server. Untuk menghindarinya, gunakan versi sesuai server.
+Contoh, server menggunakan versi 1.21, maka kamu juga menggunakan versi 1.21.
