@@ -85,13 +85,14 @@ func (handler *Handler) SendMessage(e *events.Message, message string) {
 	)
 	_, err := handler.Client.SendMessage(context.Background(), e.Info.Chat,
 		&waE2E.Message{
-			ExtendedTextMessage: &waE2E.ExtendedTextMessage{
-				Text: proto.String(message),
-				ContextInfo: &waE2E.ContextInfo{
-					StanzaID:    proto.String(e.Info.ID),
-					Participant: proto.String(e.Info.Sender.ToNonAD().String()),
-				},
-			},
+			Conversation: proto.String(message),
+			//ExtendedTextMessage: &waE2E.ExtendedTextMessage{
+			//	Text: proto.String(message),
+			//	ContextInfo: &waE2E.ContextInfo{
+			//		StanzaID:    proto.String(e.Info.ID),
+			//		Participant: proto.String(e.Info.Sender.ToNonAD().String()),
+			//	},
+			//},
 		},
 	)
 	if err != nil {
