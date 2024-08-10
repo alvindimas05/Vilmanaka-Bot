@@ -1,0 +1,8 @@
+Home digunakan agar kalian bisa teleport ke rumah kalian. Ini bisa juga sebagai alternatif teleport ke tempat tertentu.
+Maksimalnya adalah 20 rumah/teleport. Contoh penggunaaan :
+
+Menambah rumah
+/sethome RumahSawah untuk menambahkan rumah
+
+Teleport rumah
+/home RumahSawah
