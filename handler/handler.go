@@ -43,10 +43,14 @@ func (handler *Handler) HandleMessage(e *events.Message) {
 		return
 	}
 	cmd := strings.Replace(strings.Split(message, " ")[0], os.Getenv("PREFIX"), "", 1)
+	args := strings.Split(message, " ")[1:]
 
 	switch cmd {
 	case "online-players":
 		handler.CommandOnlinePlayers(e)
+		return
+	case "last-online":
+		handler.CommandLastOnlinePlayer(e, args[0])
 		return
 	}
 

@@ -1,7 +1,7 @@
 package models
 
-type Member struct {
-	ID       string `json:"id"`
-	Whatsapp string `json:"whatsapp"`
-	Discord  string `json:"discord"`
+type Player struct {
+	Username  string `json:"username"`
+	Realname  string `json:"realname"`
+	Lastlogin string `json:"lastlogin"`
 }
