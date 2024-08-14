@@ -47,6 +47,7 @@ func startWhatsappBot() {
 	handl := handler.Handler{
 		Client: client,
 	}
+	handl.Initialize()
 	client.AddEventHandler(handl.EventHandler)
 
 	if client.Store.ID == nil {

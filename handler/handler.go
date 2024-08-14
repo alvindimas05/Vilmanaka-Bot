@@ -17,10 +17,15 @@ import (
 type Handler struct {
 	Client         *whatsmeow.Client
 	eventHandlerID uint32
+	baseUrl        string
 }
 
 func (handler *Handler) register() {
 	handler.eventHandlerID = handler.Client.AddEventHandler(handler.EventHandler)
+}
+
+func (handler *Handler) Initialize() {
+	handler.baseUrl = os.Getenv("BASE_URL")
 }
 
 func (handler *Handler) EventHandler(evt interface{}) {
@@ -37,8 +42,15 @@ func (handler *Handler) HandleMessage(e *events.Message) {
 	if e.Info.IsFromMe || len(message) == 0 || string(message[0]) != os.Getenv("PREFIX") {
 		return
 	}
+	cmd := strings.Replace(strings.Split(message, " ")[0], os.Getenv("PREFIX"), "", 1)
 
-	filename := strings.Replace(strings.Split(message, " ")[0], os.Getenv("PREFIX"), "", 1)
+	switch cmd {
+	case "online-players":
+		handler.CommandOnlinePlayers(e)
+		return
+	}
+
+	filename := cmd
 	text, err := handler.GetTextMessage(filename)
 	if err != nil || filename == "help" || filename == "" {
 		handler.SendMessage(e, handler.GetHelpMessage())
