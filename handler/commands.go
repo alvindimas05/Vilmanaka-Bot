@@ -53,8 +53,8 @@ func (handler *Handler) CommandLastOnlinePlayer(e *events.Message, playername st
 		panic(err)
 	}
 
-	tm := time.Unix(i, 0)
+	tm := time.UnixMilli(i)
 
 	handler.SendMessage(e, "Player Name : "+playername+
-		"\nLast Online : "+tm.In(time.Local).Format(" 15:04:05 Monday, 02 January 2006"))
+		"\nLast Online : "+tm.In(time.Local).Format("15:04:05 Monday, 02 January 2006"))
 }
