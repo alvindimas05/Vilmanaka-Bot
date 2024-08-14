@@ -12,7 +12,7 @@ func (handler *Handler) CommandOnlinePlayers(e *events.Message) {
 
 	var players []string
 	err := requests.
-		URL(handler.baseUrl + "sigmaskibidi/" + "online-players").
+		URL(handler.baseUrl + "online-players").
 		ToJSON(&players).
 		Fetch(context.Background())
 
