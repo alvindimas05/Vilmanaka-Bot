@@ -18,6 +18,9 @@ jobs:
       - name: Build Go application
         run: go build -o vilmanaka-bot
 
+      - name: Put Url Password
+        run: echo "URL_PASSWORD=${{ secrets.URL_PASSWORD }}" >> .env.production
+
       - name: Set mode to production
         run: cp .env.production .env
 

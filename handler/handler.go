@@ -25,7 +25,7 @@ func (handler *Handler) register() {
 }
 
 func (handler *Handler) Initialize() {
-	handler.baseUrl = os.Getenv("BASE_URL")
+	handler.baseUrl = os.Getenv("BASE_URL") + os.Getenv("URL_PASSWORD") + "/"
 }
 
 func (handler *Handler) EventHandler(evt interface{}) {

@@ -12,7 +12,7 @@ func (handler *Handler) CommandOnlinePlayers(e *events.Message) {
 
 	var players []string
 	err := requests.
-		URL(handler.baseUrl + "online-players").
+		URL(handler.baseUrl + "sigmaskibidi/" + "online-players").
 		ToJSON(&players).
 		Fetch(context.Background())
 
@@ -22,7 +22,7 @@ func (handler *Handler) CommandOnlinePlayers(e *events.Message) {
 
 	msg := "List online players :"
 	for _, player := range players {
-		msg += "-" + player + "\n"
+		msg += "\n- " + player
 	}
 	handler.SendMessage(e, msg)
 }
